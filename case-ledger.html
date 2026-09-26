@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Case Ledger — Organize Fraud Evidence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="kicker">Case Ledger</div>
+    <h1>Turn scattered fraud evidence into one clear record</h1>
+    <p class="sub">Drop in the chats, screenshots, transactions, emails, links and calls as you find them. This organizes them into a dated timeline, flags gaps and possible duplicates, and builds a report you can hand to your bank or a support worker — nothing here decides who's at fault.</p>
+
+    <div class="stats" id="stats"></div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section id="addSection">
+    <div class="section-head">
+      <h2>Add a piece of evidence</h2>
+      <span class="hint">Only the date matters most — fill in whatever else you have</span>
+    </div>
+    <div class="card">
+      <form class="entry-form" id="entryForm">
+        <div class="grid3">
+          <div class="field">
+            <label for="f-type">Evidence type</label>
+            <select id="f-type">
+              <option value="chat">Chat message</option>
+              <option value="screenshot">Screenshot</option>
+              <option value="transaction">Transaction</option>
+              <option value="email">Email</option>
+              <option value="url">Link / website</option>
+              <option value="phone">Phone number</option>
+              <option value="call">Call log</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-date">Date</label>
+            <input type="date" id="f-date">
+          </div>
+          <div class="field">
+            <label for="f-time">Time (if known)</label>
+            <input type="time" id="f-time">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-desc">What happened / what it shows</label>
+          <textarea id="f-desc" placeholder="e.g. “Caller claimed to be from the bank's fraud team and asked for the OTP.”"></textarea>
+        </div>
+
+        <div class="grid3">
+          <div class="field">
+            <label for="f-amount">Amount (if a transaction)</label>
+            <input type="text" id="f-amount" placeholder="e.g. 15,000">
+          </div>
+          <div class="field">
+            <label for="f-ref">Reference / transaction ID</label>
+            <input type="text" id="f-ref" placeholder="e.g. UTR / txn ref">
+          </div>
+          <div class="field">
+            <label for="f-contact">Phone, email or URL involved</label>
+            <input type="text" id="f-contact" placeholder="e.g. +91 98xxxxxx21">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-source">Source (where this came from)</label>
+          <input type="text" id="f-source" placeholder="e.g. WhatsApp thread, bank SMS, Gmail">
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-primary" id="addBtn">Add to ledger</button>
+          <button type="button" class="btn-ghost" id="sampleBtn">Load example evidence</button>
+          <button type="button" class="btn-text" id="clearFormBtn">Clear fields</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Timeline</h2>
+      <span class="hint" id="timelineHint"></span>
+    </div>
+    <div class="card" id="timelineCard"></div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Report</h2>
+      <span class="hint">Chronological summary, open issues, and a reporting checklist</span>
+    </div>
+    <div class="card">
+      <div class="report-controls">
+        <label class="toggle-row"><input type="checkbox" id="maskToggle" checked> Mask sensitive details (accounts, phone digits, full URLs)</label>
+        <div class="report-btns">
+          <button class="btn-ghost" id="genBtn">Generate report</button>
+          <button class="btn-ghost" id="copyBtn">Copy</button>
+          <button class="btn-ghost" id="printBtn">Print / save PDF</button>
+        </div>
+      </div>
+      <pre class="report-out" id="reportOut">Add a few entries, then generate a report. It will list every entry in order, call out missing dates or references and possible duplicates, and end with a short checklist for next steps.</pre>
+      <div style="padding:0 18px 16px;"><span class="copied-msg" id="copiedMsg" style="display:none;">Copied to clipboard</span></div>
+    </div>
+  </section>
+
+  <footer>
+    Stored only in this browser, on this device — nothing here is uploaded or shared. Clearing your browser data will clear the ledger. This tool organizes what you give it; it doesn't determine fault or replace filing an official report.
+  </footer>
+</div>
+</body>
+</html>
